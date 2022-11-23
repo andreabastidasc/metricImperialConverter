@@ -1,13 +1,43 @@
+function splitter(input) {
+  let number = input.match(/[.\d\/]+/g) || ["1"];
+  let string = input.match(/[a-zA-Z]+/g)[0];
+
+  return [number[0], string];
+};
+
+function checkDivision(fraction) {
+  let num = fraction.split('/');
+  if (num.length > 2) {
+    return false;
+  }
+
+  return num;
+};
+
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    let result;
+    let result = splitter(input)[0];
+    let nums = checkDivision(result);
+
+    if (!nums) {
+      return undefined;
+    }
     
+    let num1 = nums[0];
+    let num2 = nums[1] || "1";
+
+    result = parseFloat(num1) / parseFloat(num2);
+
+    if (isNaN(num1) || isNaN(num2)) {
+      return undefined;
+    }
+
     return result;
   };
   
   this.getUnit = function(input) {
-    let result;
+    let result = splitter(input)[1];
     
     return result;
   };
