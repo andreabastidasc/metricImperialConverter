@@ -37,9 +37,24 @@ function ConvertHandler() {
   };
   
   this.getUnit = function(input) {
-    let result = splitter(input)[1];
-    
-    return result;
+    let result = splitter(input)[1].toLowerCase();
+
+    switch (result) {
+      case 'km':
+        return 'km';
+      case 'gal':
+        return 'gal';
+      case 'lbs': 
+        return 'lbs';
+      case 'mi':
+        return 'mi';
+      case 'l':
+        return 'L';
+      case 'kg':
+        return 'kg';
+      default:
+        return undefined;
+    }
   };
   
   this.getReturnUnit = function(initUnit) {
